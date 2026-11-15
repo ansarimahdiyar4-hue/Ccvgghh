@@ -14,17 +14,18 @@ jobs:
       - name: Unpack project and join core
         run: |
           set -e
-          ls -la
           unzip -q ./*.zip -d src
           cat libbox.aar.part-* > src/Bepar-VPN-Android/app/libs/libbox.aar
           ls -la src/Bepar-VPN-Android/app/libs
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
       - uses: android-actions/setup-android@v3
+        with:
+          packages: ''
 
       - name: Install Android platform
         run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
